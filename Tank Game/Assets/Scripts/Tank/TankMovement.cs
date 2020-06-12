@@ -1,24 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TankMovement : MonoBehaviour
 {
+    public Slider fuelSlider;
+
+    //Fuel Variables
     int fuel;
     public int maxFuel = 100;
-    public int distancePerFuel = 10;
+    public int distancePerFuel = 1;
 
+    //Distance Variables
     float distanceTravelled;
     float distanceTillFuelLoss;
     Vector3 lastPosition;
 
+    //Turret Variables
     public Transform Turret;
     LayerMask layerMask;
 
+    //Speed Variables
     public float speed = 12f;
     public float turnSpeed = 180f;
 
-
+    //Input Variables
     private Rigidbody rb;
     private float movementInput;
     private float turnInput;
@@ -29,6 +36,8 @@ public class TankMovement : MonoBehaviour
         lastPosition = transform.position;
         distanceTillFuelLoss = distanceTravelled + distancePerFuel;
         fuel = maxFuel;
+        fuelSlider.maxValue = maxFuel;
+        fuelSlider.value = fuel;
     }
 
     // Enables the players tank
@@ -102,23 +111,25 @@ public class TankMovement : MonoBehaviour
 
     //Checks and subtracts fuel after tank movement
     void CheckFuel()
+    {
+        distanceTravelled += Vector3.Distance(transform.position, lastPosition);
+        lastPosition = transform.position;
+        fuelSlider.value = fuel;
+
+        if (distanceTravelled >= distanceTillFuelLoss)
         {
-            distanceTravelled += Vector3.Distance(transform.position, lastPosition);
-            lastPosition = transform.position;
+            distanceTillFuelLoss = distanceTravelled + distancePerFuel;
+            fuel--;
 
-            if (distanceTravelled >= distanceTillFuelLoss)
-            {
-                distanceTillFuelLoss = distanceTravelled + distancePerFuel;
-                fuel--;
-
-                //Debug.Log(distanceTravelled + " : " + fuel);
-            }
+            //Debug.Log(distanceTravelled + " : " + fuel);
         }
+    }
 
     //Refuels tank
     public void ReFuel(int fuelAmount = 100)
     {
         fuel = fuelAmount;
+        fuelSlider.value = fuel;
         if (fuel > maxFuel)
         {
             fuel = maxFuel;

@@ -16,6 +16,11 @@ public class TankShooting : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.isPaused)
+        {
+            return;
+        }
+
         if (Input.GetButtonUp("Fire1"))
         {
             Fire();

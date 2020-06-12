@@ -12,16 +12,11 @@ public class CameraControl : MonoBehaviour
 
     public float zoomSpeed = 10;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
-        float zoom = Input.GetAxis("Mouse ScrollWheel");
-        Camera.main.orthographicSize += -zoom * zoomSpeed;
+        //Scroll Function (For Debugging)
+        /*float zoom = Input.GetAxis("Mouse ScrollWheel");
+        Camera.main.orthographicSize += -zoom * zoomSpeed;*/
     }
 
     // Update is called once per frame

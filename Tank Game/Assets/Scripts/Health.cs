@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public ParticleSystem explosionParticles;
+
     bool isPlayer;
 
     public int startingHealth = 100;
@@ -33,5 +35,8 @@ public class Health : MonoBehaviour
         isDead = true;
         FindObjectOfType<GameManager>().Destroyed(isPlayer);
         gameObject.SetActive(false);
+        explosionParticles.transform.parent = null;
+        explosionParticles.Play();
+        Destroy(explosionParticles.gameObject, explosionParticles.duration);
     }
 }

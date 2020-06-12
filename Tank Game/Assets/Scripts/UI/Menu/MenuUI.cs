@@ -9,6 +9,7 @@ public class MenuUI : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(sceneName);
     }
 
@@ -20,5 +21,20 @@ public class MenuUI : MonoBehaviour
     public void ExitMenu(bool exiting)
     {
         exitMenu.SetActive(exiting);
+    }
+
+    public void PauseGame(bool pausing)
+    {
+        GameManager.isPaused = pausing;
+        if (pausing == true)
+        {
+            Time.timeScale = 0f;
+        }
+
+        else
+        {
+            Time.timeScale = 1f;
+        }
+        ExitMenu(pausing);
     }
 }

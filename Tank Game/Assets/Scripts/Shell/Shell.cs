@@ -7,6 +7,8 @@ public class Shell : MonoBehaviour
     public float maxLifeTime = 2.0f;
     public int damage = 10;
 
+    public ParticleSystem explosionParticles;
+
     void Start()
     {
         Destroy(gameObject, maxLifeTime);
@@ -26,6 +28,9 @@ public class Shell : MonoBehaviour
             targetHealth.TakeDamage(damage);
         }
 
+        explosionParticles.transform.parent = null;
+        explosionParticles.Play();
+        Destroy(explosionParticles.gameObject, explosionParticles.duration);
         Destroy(gameObject);
     }
 }

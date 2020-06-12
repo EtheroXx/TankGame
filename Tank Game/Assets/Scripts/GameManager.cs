@@ -2,10 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static bool isPaused;
+    public MenuUI menu;
+    public Text tanksDestroyedTxt;
+    public float GameTimer;
+    public Text timeTxt;
     private int enemyTanksDestroyed = 0;
+    public Text gameOverTxt;
 
     public enum GameState
     {
@@ -16,7 +23,10 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        isPaused = false;
         gameState = GameState.Playing;
+        tanksDestroyedTxt.text = enemyTanksDestroyed.ToString();
+        gameOverTxt.text = "";
     }
 
     void Update()
@@ -33,28 +43,32 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            Application.Quit();
+            //Application.Quit();
+            TogglePause();
         }
     }
 
     public void Destroyed(bool isPlayer)
     {
         bool gameOver = false;
+        string message = "";
         if (isPlayer)
         {
-            Debug.Log("Game Over, You Destroyed " + enemyTanksDestroyed + " Enemy Tanks");
+            message = "Game Over, You Destroyed " + enemyTanksDestroyed + " Enemy Tanks";
             gameOver = true;
         }
 
         else
         {
             enemyTanksDestroyed ++;
+            tanksDestroyedTxt.text = enemyTanksDestroyed.ToString();
             Debug.Log("Tanks Destroyed: " + enemyTanksDestroyed);
         }
 
         if (gameOver)
         {
             gameState = GameState.GameOver;
+            gameOverTxt.text = message;
         }
 
     }
@@ -62,6 +76,10 @@ public class GameManager : MonoBehaviour
     void GSPlaying()
     {
         Debug.Log("Playing State");
+        GameTimer += Time.deltaTime;
+        int minutes = Mathf.FloorToInt(GameTimer / 60);
+        int seconds = Mathf.FloorToInt(GameTimer % 60);
+        timeTxt.text = string.Format("{0:0} : {1:00}", minutes, seconds);
     }
 
     void GSGameOver()
@@ -72,5 +90,11 @@ public class GameManager : MonoBehaviour
             Debug.Log("Restarting");
             SceneManager.LoadScene("Game");
         }
+    }
+
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+        menu.PauseGame(isPaused);
     }
 }

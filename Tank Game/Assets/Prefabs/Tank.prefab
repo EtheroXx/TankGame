@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 225696729}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 1.6}
+  m_LocalPosition: {x: 0, y: 0.5, z: 1.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3952874390973194191}
@@ -175,6 +175,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3952874390973194177}
+  - {fileID: 506033002004097308}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 135, z: 0}
@@ -219,8 +220,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7b9756133cc0494686ec806faac5860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fuelSlider: {fileID: 0}
   maxFuel: 100
-  distancePerFuel: 10
+  distancePerFuel: 5
   Turret: {fileID: 3952874390973194191}
   speed: 12
   turnSpeed: 180
@@ -252,6 +254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e20aa4e962138b947934ee0ca76fe103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionParticles: {fileID: 506033001990022854}
+  startingHealth: 100
 --- !u!1 &3952874390973416423
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,3 +492,80 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1001 &506033002004035992
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3952874390973194181}
+    m_Modifications:
+    - target: {fileID: 122668, guid: 5f53e2b760f0b2a4c8b27bb6f25b3c90, type: 3}
+      propertyPath: m_Name
+      value: Tank Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 462980, guid: 5f53e2b760f0b2a4c8b27bb6f25b3c90, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 462980, guid: 5f53e2b760f0b2a4c8b27bb6f25b3c90, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 462980, guid: 5f53e2b760f0b2a4c8b27bb6f25b3c90, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 462980, guid: 5f53e2b760f0b2a4c8b27bb6f25b3c90, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 462980, guid: 5f53e2b760f0b2a4c8b27bb6f25b3c90, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 462980, guid: 5f53e2b760f0b2a4c8b27bb6f25b3c90, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 462980, guid: 5f53e2b760f0b2a4c8b27bb6f25b3c90, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 462980, guid: 5f53e2b760f0b2a4c8b27bb6f25b3c90, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 462980, guid: 5f53e2b760f0b2a4c8b27bb6f25b3c90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 462980, guid: 5f53e2b760f0b2a4c8b27bb6f25b3c90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 462980, guid: 5f53e2b760f0b2a4c8b27bb6f25b3c90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19816286, guid: 5f53e2b760f0b2a4c8b27bb6f25b3c90, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19816286, guid: 5f53e2b760f0b2a4c8b27bb6f25b3c90, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5f53e2b760f0b2a4c8b27bb6f25b3c90, type: 3}
+--- !u!4 &506033002004097308 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 462980, guid: 5f53e2b760f0b2a4c8b27bb6f25b3c90,
+    type: 3}
+  m_PrefabInstance: {fileID: 506033002004035992}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &506033001990022854 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19816286, guid: 5f53e2b760f0b2a4c8b27bb6f25b3c90,
+    type: 3}
+  m_PrefabInstance: {fileID: 506033002004035992}
+  m_PrefabAsset: {fileID: 0}
